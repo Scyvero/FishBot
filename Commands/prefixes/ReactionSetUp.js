@@ -1,4 +1,4 @@
-const { Message } = require('discord.js');
+const { Message, MessageFlags } = require('discord.js');
 
 module.exports = {
     name: 'set-up-reaction',
@@ -20,6 +20,7 @@ module.exports = {
         }
 
         message.client.reactions[userId] = emoji;
+        console.log(`Reactions store updated:`, message.client.reactions);
 
         return message.reply(`Your reaction emoji has been set to: ${emoji}`);
     },

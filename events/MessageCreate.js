@@ -25,16 +25,40 @@ module.exports = {
             }
         }
 
-        // Get the user's preferred reaction emoji (if set)
-        const userId = message.author.id;
-        const reactionEmoji = message.client.reactions?.[userId];
+        // Ensure `reactions` is initialized
+        if (!message.client.reactions) {
+            message.client.reactions = {};
+        }
 
-        // If the user has set a reaction emoji, react to the message
-        if (reactionEmoji) {
+        // Check if the message replies to or mentions a user with a set reaction
+        let targetUserId = null;
+
+        // If the message is a reply, fetch the referenced message
+        if (message.reference) {
             try {
-                await message.react(reactionEmoji);
+                const referencedMessage = await message.channel.messages.fetch(message.reference.messageId);
+                targetUserId = referencedMessage.author.id;
             } catch (error) {
-                console.error('Error reacting to message:', error);
+                console.error('Error fetching referenced message:', error);
+            }
+        }
+
+        // If the message mentions a user, set targetUserId to the mentioned user's ID
+        if (message.mentions.users.size > 0) {
+            const mentionedUser = message.mentions.users.first();
+            targetUserId = mentionedUser.id;
+        }
+
+        // If we have a target user, check if they have a reaction emoji set
+        if (targetUserId) {
+            const reactionEmoji = message.client.reactions[targetUserId];
+
+            if (reactionEmoji) {
+                try {
+                    await message.react(reactionEmoji);
+                } catch (error) {
+                    console.error('Error reacting to message:', error);
+                }
             }
         }
     },
