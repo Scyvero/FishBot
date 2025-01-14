@@ -1,28 +1,27 @@
 const { Message } = require('discord.js');
+const path = require('path');
+const { exec } = require('child_process');
 
 module.exports = {
     name: 'start-pc',
     description: 'starts pc',
     async execute(message, args) {
-    
-        const { exec } = require('child_process');
+        // Get the absolute path to the Python file using __dirname
+        const pythonFilePath = path.join(__dirname, '../../StartPc.py');
 
-// Path to the Python file
-const pythonFilePath = './path/to/your/pythonFile.py';
+        // Run the Python file
+        exec(`python "${pythonFilePath}"`, (err, stdout, stderr) => {
+            if (err) {
+                console.error(`Error: ${err}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`stderr: ${stderr}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+        });
 
-// Run the Python file
-exec(`python ${pythonFilePath}`, (err, stdout, stderr) => {
-    if (err) {
-        console.error(`Error: ${err}`);
-        return;
-    }
-    if (stderr) {
-        console.error(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-});
-
-        return message.reply(`pc started`);
+        return message.reply('PC started');
     },
 };
