@@ -3,7 +3,7 @@ import struct
 
 # Configure these values for your target computer
 MAC_ADDRESS = "D8-43-AE-13-D8-18"  # Replace with your computer's MAC address
-IP_ADDRESS = "192.168.2.84"      # Usually leave as broadcast address
+IP_ADDRESS = "192.168.2.255"      # Usually leave as broadcast address
 PORT = 9                            # Standard WoL port
 
 def create_magic_packet(mac_address):
@@ -29,11 +29,9 @@ def send_wol_packet():
         # Send the packet
         sock.sendto(packet, (IP_ADDRESS, PORT))
         print(f"Wake-on-LAN packet sent to {MAC_ADDRESS}")
-        input("Press Enter to exit...")  # Keeps the window open
         
     except Exception as e:
         print(f"Error sending Wake-on-LAN packet: {e}")
-        input("Press Enter to exit...")  # Keeps the window open if there's an error
         
     finally:
         sock.close()
