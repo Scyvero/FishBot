@@ -1,3 +1,6 @@
+//handles all events for sent messages, used for multiple things
+
+/*
 const { Events } = require('discord.js');
 
 module.exports = {
@@ -42,6 +45,8 @@ module.exports = {
                 }
             }
 
+            
+
             // Check for mentions (excluding the bot itself)
             const mentions = message.mentions.users;
             for (const [userId, user] of mentions) {
@@ -60,4 +65,4 @@ module.exports = {
         }
     },
 };
-
+*/
