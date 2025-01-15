@@ -5,6 +5,7 @@ const { exec } = require('child_process');
 module.exports = {
     name: 'start-pc',
     description: 'Starts PC',
+    prefix: '!',
     async execute(message, args) {
         try {
             // Log that the command was triggered

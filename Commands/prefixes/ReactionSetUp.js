@@ -1,8 +1,9 @@
 const { Message } = require('discord.js');
 
 module.exports = {
-    name: 'set-up-reaction',
+    name: 'fb-reaction-set-up',
     description: 'Set your preferred emoji for reactions.',
+    prefix: '!',
     async execute(message, args) {
         if (!args.length) {
             return message.reply('Please provide an emoji to set up for reactions!');

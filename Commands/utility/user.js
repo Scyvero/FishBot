@@ -1,6 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
+	name: 'user',
+    description: 'shows info about user executing command',
+    prefix: '/',
 	data: new SlashCommandBuilder()
 		.setName('user')
 		.setDescription('Provides information about the user.'),
