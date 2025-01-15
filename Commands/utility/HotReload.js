@@ -3,6 +3,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 module.exports = {
+    name: 'hot-reload',
+    description: 'reloads all commands',
+    prefix: '/',
     data: new SlashCommandBuilder()
         .setName('reload')
         .setDescription('Reloads all commands.'),
