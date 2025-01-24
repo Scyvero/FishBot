@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.17.3"
+    "discord.js": "^14.17.3",
+    "express": "^4.21.2",
+    "undici": "^7.3.0"
   }
 }
